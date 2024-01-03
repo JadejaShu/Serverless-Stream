@@ -17,7 +17,7 @@ class Var(object):
     BIN_CHANNEL = int(getenv('BIN_CHANNEL', ''))
     PORT = int(getenv('PORT', 8080))
     BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
-    PING_INTERVAL = int(environ.get("PING_INTERVAL", ""))  # 20 minutes
+    PING_INTERVAL = int(environ.get("PING_INTERVAL", ))  # 20 minutes
     OWNER_ID = set(int(x) for x in os.environ.get("OWNER_ID", "").split())  
     NO_PORT = bool(getenv('NO_PORT', False))
     APP_NAME = None
