@@ -68,8 +68,7 @@ async def private_receive_handler(c: Client, m: Message):
             if user.status == "kicked":
                 await c.send_message(
                     chat_id=m.chat.id,
-                    text="You are banned!\n\n  **Contact Developer [Nobita](https://telegram.me/NobiDeveloperSupport) he will help you.**",
-                    
+                    text="You are banned!\n\n  **Contact Developer [Harsh](https://telegram.me/Mr_harsh_008), he will help you.**",
                     disable_web_page_preview=False
                 )
                 return 
@@ -80,7 +79,7 @@ async def private_receive_handler(c: Client, m: Message):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("⛔  ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ  ⛔", url=f"https://telegram.me/{Var.UPDATES_CHANNEL}")
+                            InlineKeyboardButton("UPDATE CHANNEL", url=f"https://telegram.me/{Var.UPDATES_CHANNEL}")
                         ]
                     ]
                 ),
@@ -91,7 +90,7 @@ async def private_receive_handler(c: Client, m: Message):
             await m.reply_text(e)
             await c.send_message(
                 chat_id=m.chat.id,
-                text="**sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ. ᴄᴏɴᴛᴀᴄᴛ ᴍʏ [ʙᴏss](https://telegram.me/NobiDeveloperr)**",
+                text="**sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ. ᴄᴏɴᴛᴀᴄᴛ ᴍʏ [ʙᴏss](https://telegram.me/Mr_harsh_008)**",
                 
                 disable_web_page_preview=False)
             return
@@ -101,25 +100,24 @@ async def private_receive_handler(c: Client, m: Message):
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
        
         msg_text ="""
-<b>ʏᴏᴜʀ ʟɪɴᴋ ɪs ɢᴇɴᴇʀᴀᴛᴇᴅ...⚡</b>
-
-<b>📧 ꜰɪʟᴇ ɴᴀᴍᴇ :- </b> <i>{}</i>
-
-<b>📦 ꜰɪʟᴇ sɪᴢᴇ :- </b> <i>{}</i>
-
-<b>⚠️ ᴛʜɪꜱ ʟɪɴᴋ ᴡɪʟʟ ᴇxᴘɪʀᴇ ᴀꜰᴛᴇʀ 𝟸𝟺 ʜᴏᴜʀꜱ</b>
-
-<b>❇️  ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : @MovievillaYT</b>"""
+<b>Link generated...⚡</b>
+<b>📧 File name:- </b> <i>{}</i>
+<b>📦 File size :- </b> <i>{}</i>
+<b>⚠️ This link will expire in 24 hours</b>"""
 
         await log_msg.reply_text(text=f"**ʀᴇǫᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=False,  quote=True)
         await m.reply_text(
             text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
             quote=True,
             disable_web_page_preview=False,
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ  🖥️", url=stream_link),
-                 InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)],
-                [InlineKeyboardButton('🎪  ꜱᴜʙꜱᴄʀɪʙᴇ ᴍʏ ʏᴛ ᴄʜᴀɴɴᴇʟ  🎪', url='https://youtube.com/@NobiDeveloper')]])
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ  🖥️", url=stream_link),
+                        InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)
+                    ]
+                ]
+            )
         )
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
@@ -151,14 +149,16 @@ async def channel_receive_handler(bot, broadcast):
             text=f"**Channel Name:** `{broadcast.chat.title}`\n**CHANNEL ID:** `{broadcast.chat.id}`\n**ʀᴇǫᴜᴇꜱᴛ ᴜʀʟ:** {stream_link}",
             quote=True
         )
+        await db.add_video_link(get_name(log_msg),stream_link)
         await bot.edit_message_reply_markup(
             chat_id=broadcast.chat.id,
             message_id=broadcast.id,
             reply_markup=InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ  🖥️", url=stream_link),
-                     InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)],
-                    [InlineKeyboardButton('JOIN BACKUP', url='https://telegram.dog/R_Mvzz')]
+                    [
+                        InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ  🖥️", url=stream_link),
+                        InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)
+                    ]
                 ]
             )
         )
