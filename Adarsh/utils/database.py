@@ -7,6 +7,7 @@ class Database:
         self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
         self.db = self._client[database_name]
         self.col = self.db.users
+        self.stream = self.db["stream-links"]
 
     def new_user(self, id):
         return dict(
@@ -14,6 +15,17 @@ class Database:
             join_date=datetime.date.today().isoformat()
         )
 
+   def new_video_link(self, title, url):
+        return dict(
+            title=title,
+            url=url,
+            video_added_At=datetime.date.today().isoformat()
+        )
+
+    async def add_video_link(self, title, url):
+        links = self.new_video_link(title, url)
+        await self.stream.insert_one(links)
+        
     async def add_user(self, id):
         user = self.new_user(id)
         await self.col.insert_one(user)
