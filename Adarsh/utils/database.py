@@ -1,7 +1,6 @@
 import datetime
 import motor.motor_asyncio
 
-
 class Database:
     def __init__(self, uri, database_name):
         self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
@@ -15,21 +14,21 @@ class Database:
             join_date=datetime.date.today().isoformat()
         )
 
-   def new_video_link(self, title, url):
-       return dict(
-           title=title,
-           url=url,
-           video_added_At=datetime.date.today().isoformat()
-       )
+    def new_video_link(self, title, url):
+        return dict(
+            title=title,
+            url=url,
+            video_added_At=datetime.date.today().isoformat()
+        )
 
     async def add_video_link(self, title, url):
         links = self.new_video_link(title, url)
         await self.stream.insert_one(links)
-        
+
     async def add_user(self, id):
         user = self.new_user(id)
         await self.col.insert_one(user)
-        
+
     async def add_user_pass(self, id, ag_pass):
         await self.add_user(int(id))
         await self.col.update_one({'id': int(id)}, {'$set': {'ag_p': ag_pass}})
