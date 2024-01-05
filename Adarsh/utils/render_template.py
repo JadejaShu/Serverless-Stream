@@ -79,4 +79,4 @@ async def render_page(id, secure_hash, quality='low'):
     '    });\n'
     '</script>'
 )
-return html + html_code
+    return html + html_code
