@@ -44,42 +44,42 @@ async def render_page(id, secure_hash, quality='low'):
                     html = (await r.read()) % (heading, file_data.file_name, src, file_size, quality)
 
     current_url = f'{Var.URL}/{str(id)}/{file_data.file_name}?hash={secure_hash}&quality={quality}'
-    html_code = f'''
-    <p>
-        <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
-        <center>
-            <button class="cybr-btn player" style="font-size: 20px; background-color: skyblue; border-radius: 10px;" data-plyr-provider="html" data-plyr-embed-id="{current_url}">Play Video</button> &nbsp
-        </center>
-    </p>
-    <p>
-        <center>
-            <!-- Add quality selection dropdown -->
-            <select id="quality-selector">
-                <option value="low">Low Quality</option>
-                <option value="medium">Medium Quality</option>
-                <option value="high">High Quality</option>
-            </select>
-        </center>
-    </p>
-    <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
-	<script>
-document.addEventListener('DOMContentLoaded', () => {' +
-    'const players = Plyr.setup(\'.player\', {' +
-    '    controls: [\'play-large\', \'play\', \'progress\', \'current-time\', \'mute\', \'volume\', \'fullscreen\'],' +
-    '});' +
-    '' +
-    'const qualitySelector = document.getElementById(\'quality-selector\');' +
-    'qualitySelector.addEventListener(\'change\', function() {' +
-    '    const selectedQuality = this.value;' +
-    '    const downloadButton = document.querySelector(\'.cybr-btn\');' +
-    '    const newDownloadURL = downloadButton.href.replace(\'{quality}\', selectedQuality);' +
-    '    downloadButton.href = newDownloadURL;' +
-    '});' +
-    '' +
-    'qualitySelector.value = \'{quality}\';' +
-'}');
+    html_code = (
+    '<p>\n'
+    '    <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>\n'
+    '    <center>\n'
+    f'        <button class="cybr-btn player" style="font-size: 20px; background-color: skyblue; border-radius: 10px;" data-plyr-provider="html" data-plyr-embed-id="{current_url}">Play Video</button> &nbsp\n'
+    '    </center>\n'
+    '</p>\n'
+    '<p>\n'
+    '    <center>\n'
+    '        <!-- Add quality selection dropdown -->\n'
+    '        <select id="quality-selector">\n'
+    '            <option value="low">Low Quality</option>\n'
+    '            <option value="medium">Medium Quality</option>\n'
+    '            <option value="high">High Quality</option>\n'
+    '        </select>\n'
+    '    </center>\n'
+    '</p>\n'
+    '<script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>\n'
+    '<script>\n'
+    '    document.addEventListener(\'DOMContentLoaded\', () => {\n'
+    '        const players = Plyr.setup(\'.player\', {\n'
+    '            controls: [\'play-large\', \'play\', \'progress\', \'current-time\', \'mute\', \'volume\', \'fullscreen\'],\n'
+    '        });\n'
+    '\n'
+    '        const qualitySelector = document.getElementById(\'quality-selector\');\n'
+    '        qualitySelector.addEventListener(\'change\', function() {\n'
+    '            const selectedQuality = this.value;\n'
+    '            const downloadButton = document.querySelector(\'.cybr-btn\');\n'
+    f'            const newDownloadURL = downloadButton.href.replace(\'{quality}\', selectedQuality);\n'
+    '            downloadButton.href = newDownloadURL;\n'
+    '        });\n'
+    '\n'
+    f'        qualitySelector.value = \'{quality}\';\n'
+    '    });\n'
+    '</script>'
+)
 
-</script>'''
-
-    html += html_code
-    return html
+html += html_code
+return html
