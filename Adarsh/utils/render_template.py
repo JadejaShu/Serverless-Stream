@@ -44,7 +44,7 @@ async def render_page(id, secure_hash, quality='low'):
                     html = (await r.read()) % (heading, file_data.file_name, src, file_size, quality)
 
     current_url = f'{Var.URL}/{str(id)}/{file_data.file_name}?hash={secure_hash}&quality={quality}'
-    return HTML + html_code = (
+    html_code = (
     '<p>\n'
     '    <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>\n'
     '    <center>\n'
@@ -79,4 +79,4 @@ async def render_page(id, secure_hash, quality='low'):
     '    });\n'
     '</script>'
 )
-# return html + html_code
+return html + html_code
