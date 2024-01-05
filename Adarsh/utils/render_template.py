@@ -63,26 +63,22 @@ async def render_page(id, secure_hash, quality='low'):
     </p>
     <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
 	<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const players = Plyr.setup('.player', {
-                controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
-            });
+document.addEventListener('DOMContentLoaded', () => {
+    const players = Plyr.setup('.player', {
+        controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen']
+    });
 
-            // Add event listener for quality change
-            const qualitySelector = document.getElementById('quality-selector');
-            qualitySelector.addEventListener('change', function() {
-                const selectedQuality = this.value;
-                const downloadButton = document.querySelector('.cybr-btn');
-                // Modify download URL based on selected quality
-                const newDownloadURL = downloadButton.href.replace('%s', selectedQuality);
-                downloadButton.href = newDownloadURL;
-            });
+    const qualitySelector = document.getElementById('quality-selector');
+    qualitySelector.addEventListener('change', function() {
+        const selectedQuality = this.value;
+        const downloadButton = document.querySelector('.cybr-btn');
+        const newDownloadURL = downloadButton.href.replace('{quality}', selectedQuality);
+        downloadButton.href = newDownloadURL;
+    });
 
-            // Initialize quality selector with default value
-            qualitySelector.value = '{quality}';
-        });
-    </script>
-    '''
+    qualitySelector.value = '{quality}';
+});
+</script>'''
 
     html += html_code
     return html
