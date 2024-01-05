@@ -64,7 +64,6 @@ async def render_page(id, secure_hash, quality='low'):
     <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
 	<script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Select all video elements and initialize Plyr
             const players = Plyr.setup('.player', {
                 controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
             });
