@@ -35,15 +35,13 @@
 
 `BOT_TOKEN`: Enter Your Bot Token
 
-`BIN_CHANNEL`: Enter the ID of your Bin / Log Channel.
+`BIN_CHANNEL`: Enter the ID of your Bin / Log Channel where you can keep an eye on recent actions of the bot.
   
 `OWNER_USERNAME`: Enter Your Telegram User Name
 
-`OWNER_ID`: Your Telegram User ID
+`OWNER_ID`: Your Telegram User ID 
 
-`DATABASE_URL`: Enter Your MongoDB Database URL
-
-`UPDATES_CHANNEL`: Enter the Username of Your Update Channel without '@'
+`DATABASE_URL`: Enter Your MongoDB Database URL (currently using a virtual database so there is no need to take backup daily from the server)
 
 `WORKERS`: Number of maximum concurrent workers for handling incoming updates. Defaults to `3`
 
@@ -51,9 +49,7 @@
 
 `WEB_SERVER_BIND_ADDRESS`: Your server bind address. Default to `0.0.0.0`
 
-`NO_PORT`: If you don't want your port to be displayed. You should point your `PORT` to `80` (http) or `443` (https) for the links to work. Ignore this if you're on Heroku.
-
-`FQDN`:  A Fully Qualified Domain Name if present. Defaults to `WEB_SERVER_BIND_ADDRESS`
+`NO_PORT`: If you don't want your port to be displayed. You should point your `PORT` to `80` (http) or `443` (https) for the links to work.
 
 `SLEEP_THRESHOLD`: Set a sleep threshold for flood wait exceptions happening globally in this telegram bot instance, below which any request that raises a flood wait will be automatically invoked again after sleeping for the required amount of time. Flood wait exceptions requiring higher waiting times will be raised. Defaults to 60 seconds. This is used to save the bot from Telegram's rate limits. 
 </details>
