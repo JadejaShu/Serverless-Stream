@@ -31,20 +31,20 @@ async def render_page(id, secure_hash, quality='low'):
 
         async with aiofiles.open(template_path) as r:
             tag = file_data.mime_type.split('/')[0].strip()
-            heading = (
-                f'Watch {filename}' if tag == 'video' else
-                f'Listen {filename}' if tag == 'audio' else
-                f'Download {filename}'
-            )
-            html = (await r.read()).replace('tag', tag).format(title=heading, filename=filename, src=src, quality=quality)
+            # heading = (
+            #     f'Watch {filename}' if tag == 'video' else
+            #     f'Listen {filename}' if tag == 'audio' else
+            #     f'Download {filename}'
+            # )
+            html = await r.read().replace('tag', tag).format(title=filename, filename=filename, src=src, quality=quality)
 
         if tag == 'other':
             async with aiohttp.ClientSession() as s:
                 async with s.get(src) as u:
-                    heading = f'Download {filename}'
+                    # heading = f'Download {filename}'
                     file_size = humanbytes(int(u.headers.get('Content-Length')))
                     async with aiofiles.open(TEMPLATE_PATH_OTHER) as r:
-                        html = (await r.read()).format(title=heading, filename=filename, src=src, quality=quality)
+                        html = (await r.read()).format(title=filename, filename=filename, src=src, quality=quality)
 
         current_url = f'{Var.URL}/{str(id)}/{filename}?hash={secure_hash}&quality={quality}'
         logging.info(f"Current URL: {current_url}")
