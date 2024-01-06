@@ -41,8 +41,8 @@ async def render_page(id, secure_hash, quality='low'):
                 heading = f'Download {file_data.file_name}'
                 file_size = humanbytes(int(u.headers.get('Content-Length')))
                 async with aiofiles.open(TEMPLATE_PATH_OTHER) as r:
-                    html = (await r.read()) % (heading, file_data.file_name, src, file_size, quality)
-
+                    html = (await r.read()).format(heading, file_data.file_name, src, quality)
+                    
     current_url = f'{Var.URL}/{str(id)}/{file_data.file_name}?hash={secure_hash}&quality={quality}'
     html_code = f'''
     <p>
