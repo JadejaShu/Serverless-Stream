@@ -50,16 +50,18 @@ from ..utils.custom_dl import ByteStreamer
 from Adarsh.utils.render_template import render_page
 from Adarsh.vars import Var
 from Adarsh.utils.database import Database
+
 db = Database(Var.DATABASE_URL, Var.name)
 routes = web.RouteTableDef()
 
 @routes.get("/", allow_head=True)
 async def root_route_handler(request):
-    
     video_links = await db.get_video_links()
+    
     html_content = "<html><body><h1>Recently added video links </h1><ul>"
-    async for link in video_links:
-        html_content += await f"<div><li> <a href='{link['url']}' > {link['title']} </a></li></div>"
+    
+    for link in video_links:
+        html_content += f"<div><li> <a href='{link['url']}' > {link['title']} </a></li></div>"
     html_content += "</ul></body></html>"
     return web.Response(text=html_content, content_type='text/html')
 
