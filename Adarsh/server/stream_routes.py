@@ -49,15 +49,15 @@ from ..utils.time_format import get_readable_time
 from ..utils.custom_dl import ByteStreamer
 from Adarsh.utils.render_template import render_page
 from Adarsh.vars import Var
-from Adarsh.utils.database import *
-
+from Adarsh.utils.database import Database
+db = Database(Var.DATABASE_URL, Var.name)
 routes = web.RouteTableDef()
 
 @routes.get("/", allow_head=True)
 async def root_route_handler(request):
-    video_links = await self.get_video_links()
+    
+    video_links = await db.get_video_links()
     html_content = "<html><body><h1>Recently added video links </h1><ul>"
-
     for link in video_links:
         html_content += f"<div><li> <a href='{link['url']}' > {link['title']} </a></li></div>"
     html_content += "</ul></body></html>"
