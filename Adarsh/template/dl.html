@@ -21,12 +21,12 @@
     </header>
 
     <div class="container">
-        <a href={}>
+        <a href="{}">
             <button class="cybr-btn player">
                 Play Video
                 <span aria-hidden>_</span>
                 <span aria-hidden class="cybr-btn__glitch">_404 Error</span>
-                <span aria-hidden class="cybr-btn__tag">_{}</span>
+                <span aria-hidden class="cybr-btn">_{}</span>
             </button>
         </a>
         
@@ -38,18 +38,9 @@
         </select>
     </div>
     
-    <footer>
-        <span>
-            <a href="https://telegram.me/mr_harsh_008" id='❤🖤'>
-                credits here
-            </a>
-        </span>
-    </footer>
-    
     <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {{
-            // Select all video elements and initialize Plyr
             const players = Plyr.setup('.player', {{
                 controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
             }});
@@ -63,8 +54,6 @@
                 footer.classList.toggle('dark')
                 title.classList.toggle('dark')
             }}
-
-            // Add event listener for quality change
             const qualitySelector = document.getElementById('quality-selector');
             qualitySelector.addEventListener('change', function() {{
                 const selectedQuality = this.value;
