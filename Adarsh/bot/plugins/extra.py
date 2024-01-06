@@ -22,7 +22,7 @@ async def maintainers(b,m):
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton("ᴅᴇᴠᴇʟᴏᴘᴇʀ   💻", url=f"https://telegram.me/NobiDeveloperr")
+                                InlineKeyboardButton("ᴅᴇᴠᴇʟᴏᴘᴇʀ   💻", url=f"https://telegram.me/Mr_harsh_008")
                             ]
                         ]
                     ),
@@ -30,24 +30,24 @@ async def maintainers(b,m):
                     disable_web_page_preview=True)
             
          
-@StreamBot.on_message(filters.regex("follow❤️"))
-async def follow_user(b,m):
-    try:
-       await b.send_message(chat_id=m.chat.id,text="HELLO",quote=True)
-    except Exception:
-                await b.send_message(
-                    chat_id=m.chat.id,
-                    text="<b>HERE'S THE FOLLOW LINK</b>",
+# @StreamBot.on_message(filters.regex("follow❤️"))
+# async def follow_user(b,m):
+#     try:
+#        await b.send_message(chat_id=m.chat.id,text="HELLO",quote=True)
+#     except Exception:
+#                 await b.send_message(
+#                     chat_id=m.chat.id,
+#                     text="<b>HERE'S THE FOLLOW LINK</b>",
                     
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton("FOLLOW ME", url=f"https://telegram.me/MovieVillaYT")
-                            ]
-                        ]
-                    ),
+#                     reply_markup=InlineKeyboardMarkup(
+#                         [
+#                             [
+#                                 InlineKeyboardButton("FOLLOW ME", url=f"https://telegram.me/MovieVillaYT")
+#                             ]
+#                         ]
+#                     ),
                     
-                    disable_web_page_preview=True)
+#                     disable_web_page_preview=True)
         
 
 @StreamBot.on_message(filters.regex("DC"))
@@ -63,7 +63,7 @@ async def start(bot, update):
     
 @StreamBot.on_message(filters.command("list"))
 async def list(l, m):
-    LIST_MSG = " {},\nHere is a list of all my commands \n \n 1 . `start⚡️` \n 2. `help📚` \n 3.`follow❤️` \n 4. `ping📡` \n 5. `status📊` \n 6. `maintainers😎` "
+    LIST_MSG = " {},\nHere is a list of all my commands \n \n 1 . `start⚡️` \n 2. `help📚` \n 3. `ping📡` \n 4. `status📊` \n 5. `maintainers😎` "
     await l.send_message(chat_id = m.chat.id,
         text = LIST_MSG.format(m.from_user.mention(style="md"))
         
