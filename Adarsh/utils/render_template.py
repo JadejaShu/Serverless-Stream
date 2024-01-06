@@ -79,6 +79,5 @@ async def render_page(id, secure_hash, quality='low'):
     '        qualitySelector.value = \'{quality}\';\n'
     '    }});\n'
     '</script>'
-)
-
-formatted_html_code = html_code.format(current_url=current_url, quality=quality)
+    )
+    formatted_html_code = html_code.format(current_url=current_url, quality=quality)
