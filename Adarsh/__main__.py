@@ -64,8 +64,7 @@ async def start_services():
     print('----------------------------- DONE ---------------------------------------------------------------------')
     print('\n')
     print('---------------------------------------------------------------------------------------------------------')
-    print('---------------------------------------------------------------------------------------------------------')
-    print(' follow me for more such exciting bots! https://github.com/NobiDeveloper')
+    print(' follow us for more such exciting ideas')
     print('---------------------------------------------------------------------------------------------------------')
     print('\n')
     print('----------------------- Service Started -----------------------------------------------------------------')
@@ -74,9 +73,7 @@ async def start_services():
     print('                        Owner =>> {}'.format((Var.OWNER_USERNAME)))
     if Var.ON_HEROKU:
         print('                        app runnng on =>> {}'.format(Var.FQDN))
-    print('---------------------------------------------------------------------------------------------------------')
-    print('Give a star to my repo https://github.com/NobiDeveloper/Nobita-Stream-Bot  also follow me for new bots')
-    print('---------------------------------------------------------------------------------------------------------')
+    print('bot ststus stable !')
     await idle()
 
 if __name__ == '__main__':
