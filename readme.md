@@ -7,11 +7,11 @@
   
 <p>
 <p>
-👉  This is used to stream any type of video on your domain URL with ease 
-👉  There will be no need for extra cost for costly servers.
-👉  Server Ping check.<br>
-👉  Superfast interface with simple UI.<br>
-👉  Password Protection enabled.<br>
+  👉  This is used to stream any type of video on your domain URL with ease
+  👉  There will be no need for extra cost for costly servers.
+  👉  Server Ping check.<be>
+  👉  Superfast interface with simple UI.<br>
+  👉  Password Protection enabled.<br>
 👉  User-Friendly Interface.<br>
 👉  Custom Domain support is currently working.<br>
 👉  currently, there are no ads in generated links.<br>
