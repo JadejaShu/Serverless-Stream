@@ -36,7 +36,7 @@ async def render_page(id, secure_hash, quality='low'):
             #     f'Listen {filename}' if tag == 'audio' else
             #     f'Download {filename}'
             # )
-            html = await r.read().replace('tag', tag).format(title=filename, filename=filename, src=src, quality=quality)
+            html = (await r.read()).replace('tag', tag).format(title=filename, filename=filename, src=src, quality=quality)
 
         if tag == 'other':
             async with aiohttp.ClientSession() as s:
@@ -50,19 +50,10 @@ async def render_page(id, secure_hash, quality='low'):
         logging.info(f"Current URL: {current_url}")
         html_code = f'''
         <p>
-            <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
             <center>
-                <button onclick="window.location.href = '{current_url}'">Save in your gallery</button> &nbsp
-            </center>
-        </p>
-        </p>
-        <center>
-            <h2>
-                <a href="https://telegram.me/Mr_harsh_008">
-                    <img src="https://graph.org/file/b57cdba982191a25db535.jpg" alt="BotszList" width="150" height="75">
-                </a>
-            </h2>
-        </center>
+            <h5>Click on 👇 button to watch/download in your favorite player</h5>
+            <button onclick="window.location.href = {current_url}">Save in your gallery</button> &nbsp </center>
+            </p>
         '''
 
         html += html_code
