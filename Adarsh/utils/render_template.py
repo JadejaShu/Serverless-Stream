@@ -8,6 +8,10 @@ import aiofiles
 import logging
 import aiohttp
 
+TEMPLATE_PATH_VIDEO = 'Adarsh/template/req.html'
+TEMPLATE_PATH_AUDIO = 'Adarsh/template/req.html'
+TEMPLATE_PATH_OTHER = 'Adarsh/template/dl.html'
+
 async def render_page(id, secure_hash, quality='low'):
     file_data = await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(id))
     if file_data.unique_id[:6] != secure_hash:
