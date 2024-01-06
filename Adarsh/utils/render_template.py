@@ -73,7 +73,7 @@ async def render_page(id, secure_hash, quality='low'):
     '        qualitySelector.addEventListener(\'change\', function() {{\n'
     '            const selectedQuality = this.value;\n'
     '            const downloadButton = document.querySelector(\'.cybr-btn\');\n'
-    '            const newDownloadURL = downloadButton.href.replace('{{quality}}', selectedQuality);\n'  # Change this line
+    '            const newDownloadURL = downloadButton.href.replace(\'{{quality}}\', selectedQuality);\n'
     '            downloadButton.href = newDownloadURL;\n'
     '        }});\n'
     '        qualitySelector.value = \'{quality}\';\n'
