@@ -8,6 +8,7 @@ import aiofiles
 import logging
 import aiohttp
 
+logging.basicConfig(level=logging.INFO)
 TEMPLATE_PATH_VIDEO = 'Adarsh/template/req.html'
 TEMPLATE_PATH_AUDIO = 'Adarsh/template/req.html'
 TEMPLATE_PATH_OTHER = 'Adarsh/template/dl.html'
