@@ -7,18 +7,19 @@
   
 <p>
 <p>
-  👉  This is used to stream any type of video on your domain URL with ease
-  👉  There will be no need for extra cost for costly servers.
-  👉  Server Ping check.<be>
+  <br /><br />
+  👉  This is used to stream any type of video on your domain URL with ease.<br />
+  👉  There will be no need for extra cost for costly servers.<br />
+  👉  Server Ping check.<br />
   👉  Superfast interface with simple UI.<br>
   👉  Password Protection enabled.<br>
-👉  User-Friendly Interface.<br>
-👉  Custom Domain support is currently working.<br>
-👉  currently, there are no ads in generated links.<br>
-👉  Multiplayer Stream Players Added. eg:- mx player, VLC player<br>
-👉  Real-time CPU, RAM, and Internet usage features for quick updates.<br>
-👉  Superfast download and stream links.<br>
-👉  Along with the links you also get file information like name, size, etc.<br>
+  👉  User-Friendly Interface.<br>
+  👉  Custom Domain support is currently working.<br>
+  👉  currently, there are no ads in generated links.<br>
+  👉  Multiplayer Stream Players Added. eg:- mx player, VLC player<br>
+  👉  Real-time CPU, RAM, and Internet usage features for quick updates.<br>
+  👉  Superfast download and stream links.<br>
+  👉  Along with the links you also get file information like name, size, etc.<br>
 </details>
 
 <details>
