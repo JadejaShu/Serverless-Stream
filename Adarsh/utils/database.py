@@ -24,6 +24,10 @@ class Database:
     async def add_video_link(self, title, url):
         links = self.new_video_link(title, url)
         await self.stream.insert_one(links)
+        
+    async def get_video_link(self):
+        all_links = await self.stream.find({})
+        return all_users
 
     async def add_user(self, id):
         user = self.new_user(id)
