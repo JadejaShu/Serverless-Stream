@@ -33,7 +33,7 @@ async def render_page(id, secure_hash, quality='low'):
             f'Listen {file_data.file_name}' if tag == 'audio' else
             f'Download {file_data.file_name}'
         )
-        html = (await r.read()).replace('tag', tag) % (heading, file_data.file_name, src, quality)
+        html = (await r.read()).replace('tag', tag).format(heading, file_data.file_name, src, quality)
 
     if tag == 'other':
         async with aiohttp.ClientSession() as s:
