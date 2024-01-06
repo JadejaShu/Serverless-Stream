@@ -34,6 +34,7 @@ async def render_page(id, secure_hash, quality='low'):
             f'Download {file_data.file_name}'
         )
         html = (await r.read()).replace('tag', tag).format(heading, file_data.file_name, src, quality)
+        logging.debug(f"1st HTML {html}")
 
     if tag == 'other':
         async with aiohttp.ClientSession() as s:
@@ -42,17 +43,14 @@ async def render_page(id, secure_hash, quality='low'):
                 file_size = humanbytes(int(u.headers.get('Content-Length')))
                 async with aiofiles.open(TEMPLATE_PATH_OTHER) as r:
                     html = (await r.read()).format(heading, file_data.file_name, src, quality)
+                    logging.debug(f"2nd HTML {html}")
                     
     current_url = f'{Var.URL}/{str(id)}/{file_data.file_name}?hash={secure_hash}&quality={quality}'
+    logging.debug(f"{current_url}")
     html_code = f'''
     <p>
         <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>
         <center>
-            <button onclick="window.location.href = 'intent:{current_url}#Intent;package=com.mxtech.videoplayer.ad;S.title={file_data.file_name};end'">MX player</button> &nbsp
-            <button onclick="window.location.href = 'vlc://{current_url}'">VLC player</button> &nbsp <br>
-            <p>&nbsp</p>
-            <button onclick="window.location.href = 'playit://playerv2/video?url={current_url}&amp;title={file_data.file_name}'">Playit player</button> &nbsp <br>
-            <p>&nbsp</p>
             <button onclick="window.location.href = '{current_url}'">Save in your gallery</button> &nbsp
         </center>
     </p>
