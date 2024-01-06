@@ -49,7 +49,7 @@ async def render_page(id, secure_hash, quality='low'):
     '    <center><h5>Click on 👇 button to watch/download in your favorite player</h5></center>\n'
     '    <center>\n'
     '        <button class="cybr-btn player" style="font-size: 20px; background-color: skyblue; border-radius: 10px;" '
-    'data-plyr-provider="html" data-plyr-embed-id="{current_url}">Play Video</button> &nbsp\n'
+    'data-plyr-provider="html" data-plyr-embed-id="{}">Play Video</button> &nbsp\n'
     '    </center>\n'
     '</p>\n'
     '<p>\n'
@@ -73,12 +73,12 @@ async def render_page(id, secure_hash, quality='low'):
     '        qualitySelector.addEventListener(\'change\', function() {{\n'
     '            const selectedQuality = this.value;\n'
     '            const downloadButton = document.querySelector(\'.cybr-btn\');\n'
-    '            const newDownloadURL = downloadButton.href.replace(\'{quality}\', selectedQuality);\n'
+    '            const newDownloadURL = downloadButton.href.replace('{{quality}}', selectedQuality);\n'  # Change this line
     '            downloadButton.href = newDownloadURL;\n'
     '        }});\n'
     '        qualitySelector.value = \'{quality}\';\n'
     '    }});\n'
     '</script>'
 )
-    formatted_html_code = html_code.format(current_url=current_url, quality=quality)
-    return html + formatted_html_code
+
+formatted_html_code = html_code.format(current_url=current_url, quality=quality)
