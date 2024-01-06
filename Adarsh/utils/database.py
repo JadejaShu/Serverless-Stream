@@ -25,9 +25,9 @@ class Database:
         links = self.new_video_link(title, url)
         await self.stream.insert_one(links)
         
-    async def get_video_links(self):
-        all_links = await self.stream.find({})
-        return all_links
+async def get_video_links(self):
+    all_links = await self.stream.find({}).to_list(length=None)
+    return all_links
 
     async def search_video_links(self, keyword):
         matching_links = await self.stream.find({"title": {"$regex": keyword, "$options": "i"}})
