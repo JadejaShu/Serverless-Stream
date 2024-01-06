@@ -37,7 +37,6 @@ async def render_page(id, secure_hash, quality='low'):
                 f'Download {filename}'
             )
             html = (await r.read()).replace('tag', tag).format(title=heading, filename=filename, src=src, quality=quality)
-            logging.info(f"1st HTML: {html}")
 
         if tag == 'other':
             async with aiohttp.ClientSession() as s:
@@ -46,7 +45,6 @@ async def render_page(id, secure_hash, quality='low'):
                     file_size = humanbytes(int(u.headers.get('Content-Length')))
                     async with aiofiles.open(TEMPLATE_PATH_OTHER) as r:
                         html = (await r.read()).format(title=heading, filename=filename, src=src, quality=quality)
-                        logging.info(f"2nd HTML: {html}")
 
         current_url = f'{Var.URL}/{str(id)}/{filename}?hash={secure_hash}&quality={quality}'
         logging.info(f"Current URL: {current_url}")
