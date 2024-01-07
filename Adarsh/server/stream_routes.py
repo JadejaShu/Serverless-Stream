@@ -64,7 +64,8 @@ async def search_handler(request):
     result_list = [{"title": link["title"], "url": link["url"]} for link in matching_links]
        
     return web.json_response(result_list)
-    @routes.get("/", allow_head=True)
+
+@routes.get("/", allow_head=True)
 async def root_route_handler(request):
     video_links = await db.get_video_links()
     
