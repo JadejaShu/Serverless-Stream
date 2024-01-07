@@ -64,8 +64,7 @@ async def search_handler(request):
     result_list = [{"title": link["title"], "url": link["url"]} for link in matching_links]
        
     return web.json_response(result_list)
-    
-@routes.get("/", allow_head=True)
+    @routes.get("/", allow_head=True)
 async def root_route_handler(request):
     video_links = await db.get_video_links()
     
@@ -74,10 +73,11 @@ async def root_route_handler(request):
             <body>
                 <h1>Recently added video links</h1>
                 <div style="text-align:right;">
-                    <input type="text" id="inputField" placeholder="search here" onchange="handleChange()">
+                    <input type="text" id="inputField" placeholder="search here" oninput="handleChange()">
                 </div>
                 <div id="search-tab" style="text-align:right;"></div>
-                <ul>"""
+                <ul>
+    """
 
     for link in video_links:
         html_content += f"<div><li><a href='{link['url']}'>{link['title']}</a></li></div>"
@@ -85,14 +85,20 @@ async def root_route_handler(request):
     html_content += """
                 </ul>
                 <script>
-                let search_res = document.getElementById('search-tab')
+                    let searchRes = document.getElementById('search-tab');
+
                     async function handleChange() {
                         const inputValue = document.getElementById('inputField').value;
                         const response = await fetch(`/search/${inputValue}`);
-                        const result = await response.text();
-                        for(title in response){
-                        search_res.innerhtml = `<li><a href='${response.url}'>${response.title}</a></li>`
-                        }
+                        const result = await response.json();
+
+                        // Clear previous results
+                        searchRes.innerHTML = "";
+
+                        // Display new results
+                        result.forEach(link => {
+                            searchRes.innerHTML += `<li><a href='${link.url}'>${link.title}</a></li>`;
+                        });
                     }
                 </script>
             </body>
