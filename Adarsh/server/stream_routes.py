@@ -54,15 +54,47 @@ from Adarsh.utils.database import Database
 db = Database(Var.DATABASE_URL, Var.name)
 routes = web.RouteTableDef()
 
+
+@routes.get(r"/search/{input_value}")
+async def search_handler(request):
+    input_value = request.match_info['input_value']
+    matching_links = await db.search_video_links(input_value)
+    
+    # Convert the matching_links to a list of dictionaries for JSON response
+    result_list = [{"title": link["title"], "url": link["url"]} for link in matching_links]
+       
+    return web.json_response(result_list)
+    
 @routes.get("/", allow_head=True)
 async def root_route_handler(request):
     video_links = await db.get_video_links()
     
-    html_content = "<html><body><h1>Recently added video links </h1><ul>"
-    
+    html_content = """
+        <html>
+            <body>
+                <h1>Recently added video links</h1>
+                <div style="text-align:right;">
+                    <input type="text" id="inputField" onchange="handleChange()">
+                </div>
+                <ul>"""
+
     for link in video_links:
-        html_content += f"<div><li> <a href='{link['url']}' > {link['title']} </a></li></div>"
-    html_content += "</ul></body></html>"
+        html_content += f"<div><li><a href='{link['url']}'>{link['title']}</a></li></div>"
+
+    html_content += """
+                </ul>
+                <script>
+                    async function handleChange() {
+                        const inputValue = document.getElementById('inputField').value;
+                        const response = await fetch(`/search/${inputValue}`);
+                        const result = await response.text();
+                        console.log(result);
+                    }
+                </script>
+            </body>
+        </html>
+    """
+
     return web.Response(text=html_content, content_type='text/html')
 
 @routes.get(r"/watch/{path:\S+}", allow_head=True)
