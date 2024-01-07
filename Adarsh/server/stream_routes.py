@@ -72,8 +72,7 @@ html_content += """
             </body>
         </html>
     """
-
-    return web.Response(text=html_content, content_type='text/html')
+return web.Response(text=html_content, content_type='text/html')
 
 @routes.get(r"/watch/{path:\S+}", allow_head=True)
 async def stream_handler(request: web.Request):
