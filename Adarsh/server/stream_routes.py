@@ -43,11 +43,12 @@ async def root_route_handler(request):
                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
            </head>
             <body class="container mt-5">
-                <h1 class="text-center">Recently added video links</h1>
-                <div class="text-right mb-3">
-                    <input type="text" id="inputField" class="form-control" placeholder="Search here" oninput="handleChange()">
+                <div class="text-right mb-3 col-md-3">
+                    <b>Search Here:-</b> <input type="text" id="inputField" class="form-control" placeholder="Search here" oninput="handleChange()">
                 </div>
                 <div id="search-tab" class="text-right"></div>
+                
+                <h1 class="text-center">Recently added video links</h1>
                 <ul class="list-unstyled">
     """
 
@@ -62,16 +63,16 @@ async def root_route_handler(request):
 
                     async function handleChange() {
                         const inputValue = document.getElementById('inputField').value;
+                        if(inputValue == ""){
+                        searchRes.innerHTML = "";
+                        } else {
                         const response = await fetch(`/search/${inputValue}`);
                         const result = await response.json();
-
-                        // Clear previous results
                         searchRes.innerHTML = "";
-
-                        // Display new results
                         result.forEach(link => {
                             searchRes.innerHTML += `<li class='mb-2'><a href='${link.url}' class='btn btn-outline-primary btn-block'>${link.title}</a></li>`;
                         });
+                        }
                     }
                 </script>
             </body>
