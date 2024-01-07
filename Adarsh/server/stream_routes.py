@@ -36,7 +36,7 @@ async def root_route_handler(request):
     html_content = """
         <html>
             <head>
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyVn4Srp7uFHAAn5qjpn65F9O0CJD1" crossorigin="anonymous">
+                <link rel="stylesheet" href="../utils/style.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyVn4Srp7uFHAAn5qjpn65F9O0CJD1" crossorigin="anonymous">
             </head>
             <body class="container mt-5">
                 <h1 class="text-center">Recently added video links</h1>
