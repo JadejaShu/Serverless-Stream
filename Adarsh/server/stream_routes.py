@@ -47,10 +47,10 @@ async def root_route_handler(request):
                 <ul class="list-unstyled">
     """
 
-for link in video_links:
-    html_content += f"<li class='mb-2'><a href='{link['url']}' class='btn btn-outline-primary btn-block'>{link['title']}</a></li>"
+    for link in video_links:
+        html_content += f"<li class='mb-2'><a href='{link['url']}' class='btn btn-outline-primary btn-block'>{link['title']}</a></li>"
 
-html_content += """
+    html_content += """
                 </ul>
                 <script>
                     let searchRes = document.getElementById('search-tab');
@@ -72,7 +72,8 @@ html_content += """
             </body>
         </html>
     """
-return web.Response(text=html_content, content_type='text/html')
+
+    return web.Response(text=html_content, content_type='text/html')
 
 @routes.get(r"/watch/{path:\S+}", allow_head=True)
 async def stream_handler(request: web.Request):
