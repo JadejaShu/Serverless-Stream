@@ -30,9 +30,9 @@ class Database:
         return all_links
 
     async def search_video_links(self, keyword):
-    matching_links_cursor = self.stream.find({"title": {"$regex": keyword, "$options": "i"}})
-    matching_links = await matching_links_cursor.to_list(length=None)
-    return matching_links
+        matching_links_cursor = self.stream.find({"title": {"$regex": keyword, "$options": "i"}})
+        matching_links = await matching_links_cursor.to_list(length=None)
+        return matching_links
         
     async def add_user(self, id):
         user = self.new_user(id)
