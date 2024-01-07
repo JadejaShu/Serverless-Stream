@@ -1,39 +1,3 @@
-# import re
-# import time
-# import math
-# import logging
-# import secrets
-# import mimetypes
-# from aiohttp import web
-# from aiohttp.http_exceptions import BadStatusLine
-# from Adarsh.bot import multi_clients, work_loads, StreamBot
-# from Adarsh.server.exceptions import FIleNotFound, InvalidHash
-# from Adarsh import StartTime, __version__
-# from ..utils.time_format import get_readable_time
-# from ..utils.custom_dl import ByteStreamer
-# from Adarsh.utils.render_template import render_page
-# from Adarsh.vars import Var
-
-
-# routes = web.RouteTableDef()
-
-# @routes.get("/", allow_head=True)
-# async def root_route_handler(_):
-#     return web.json_response(
-#         {
-#             "server_status": "running",
-#             "uptime": get_readable_time(time.time() - StartTime),
-#             "telegram_bot": "@" + StreamBot.username,
-#             "connected_bots": len(multi_clients),
-#             "loads": dict(
-#                 ("bot" + str(c + 1), l)
-#                 for c, (_, l) in enumerate(
-#                     sorted(work_loads.items(), key=lambda x: x[1], reverse=True)
-#                 )
-#             ),
-#             "version": __version__,
-#         }
-#     )
 import re
 import time
 import math
@@ -71,19 +35,22 @@ async def root_route_handler(request):
     
     html_content = """
         <html>
-            <body>
-                <h1>Recently added video links</h1>
-                <div style="text-align:right;">
-                    <input type="text" id="inputField" placeholder="search here" oninput="handleChange()">
+            <head>
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyVn4Srp7uFHAAn5qjpn65F9O0CJD1" crossorigin="anonymous">
+            </head>
+            <body class="container mt-5">
+                <h1 class="text-center">Recently added video links</h1>
+                <div class="text-right mb-3">
+                    <input type="text" id="inputField" class="form-control" placeholder="Search here" oninput="handleChange()">
                 </div>
-                <div id="search-tab" style="text-align:right;"></div>
-                <ul>
+                <div id="search-tab" class="text-right"></div>
+                <ul class="list-unstyled">
     """
 
-    for link in video_links:
-        html_content += f"<div><li><a href='{link['url']}'>{link['title']}</a></li></div>"
+for link in video_links:
+    html_content += f"<li class='mb-2'><a href='{link['url']}' class='btn btn-outline-primary btn-block'>{link['title']}</a></li>"
 
-    html_content += """
+html_content += """
                 </ul>
                 <script>
                     let searchRes = document.getElementById('search-tab');
@@ -98,7 +65,7 @@ async def root_route_handler(request):
 
                         // Display new results
                         result.forEach(link => {
-                            searchRes.innerHTML += `<li><a href='${link.url}'>${link.title}</a></li>`;
+                            searchRes.innerHTML += `<li class='mb-2'><a href='${link.url}' class='btn btn-outline-primary btn-block'>${link.title}</a></li>`;
                         });
                     }
                 </script>
