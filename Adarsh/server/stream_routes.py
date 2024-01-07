@@ -74,8 +74,9 @@ async def root_route_handler(request):
             <body>
                 <h1>Recently added video links</h1>
                 <div style="text-align:right;">
-                    <input type="text" id="inputField" onchange="handleChange()">
+                    <input type="text" id="inputField" placeholder="search here" onchange="handleChange()">
                 </div>
+                <div id="search-tab" style="text-align:right;"></div>
                 <ul>"""
 
     for link in video_links:
@@ -84,11 +85,14 @@ async def root_route_handler(request):
     html_content += """
                 </ul>
                 <script>
+                let search_res = document.getElementById('search-tab')
                     async function handleChange() {
                         const inputValue = document.getElementById('inputField').value;
                         const response = await fetch(`/search/${inputValue}`);
                         const result = await response.text();
-                        console.log(result);
+                        for(title in response){
+                        search_res.innerhtml = `<li><a href='${response.url}'>${response.title}</a></li>`
+                        }
                     }
                 </script>
             </body>
