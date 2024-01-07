@@ -34,10 +34,14 @@ async def root_route_handler(request):
     video_links = await db.get_video_links()
     
     html_content = """
-        <html>
+       <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <head>
-                <link rel="stylesheet" href="../utils/style.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyVn4Srp7uFHAAn5qjpn65F9O0CJD1" crossorigin="anonymous">
-            </head>
+               <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+           </head>
             <body class="container mt-5">
                 <h1 class="text-center">Recently added video links</h1>
                 <div class="text-right mb-3">
@@ -52,6 +56,7 @@ async def root_route_handler(request):
 
     html_content += """
                 </ul>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
                 <script>
                     let searchRes = document.getElementById('search-tab');
 
