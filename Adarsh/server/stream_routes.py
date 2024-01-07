@@ -53,7 +53,7 @@ async def root_route_handler(request):
     """
 
     for link in video_links:
-        html_content += f"<li class='mb-2'><a href='{link['url']}' class='btn btn-outline-primary btn-block'>{link['title']}</a></li>"
+        html_content += f"<li class='mb-2'><a href='{link['url']}' target="_blank" class='btn btn-outline-primary btn-block'>{link['title']}</a></li>"
 
     html_content += """
                 </ul>
@@ -70,7 +70,7 @@ async def root_route_handler(request):
                         const result = await response.json();
                         searchRes.innerHTML = "";
                         result.forEach(link => {
-                            searchRes.innerHTML += `<li class='mb-2'><a href='${link.url}' class='btn btn-outline-primary btn-block'>${link.title}</a></li>`;
+                            searchRes.innerHTML += `<li class='mb-2'><a href='${link.url}' target="_blank" class='btn btn-outline-primary btn-block'>${link.title}</a></li>`;
                         });
                         }
                     }
